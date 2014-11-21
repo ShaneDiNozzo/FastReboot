@@ -18,6 +18,7 @@ public class FoActivity extends ActionBarActivity {
         setContentView(R.layout.activity_fo);
     } //onCreate
 
+    @SuppressWarnings("UnusedParameters")
     public String _normalReboot(View view) {
 
         message = "Are you sure you want to reboot the device?\nAll unsaved data will be lost!";
@@ -29,6 +30,7 @@ public class FoActivity extends ActionBarActivity {
         return rebootType;
     } //_normalReboot
 
+    @SuppressWarnings("UnusedParameters")
     public String _recoveryReboot(View view) {
 
         message = "Are you sure you want to reboot the device into recovery mode?\n" +
@@ -41,6 +43,7 @@ public class FoActivity extends ActionBarActivity {
         return rebootType;
     } //_recoveryReboot
 
+    @SuppressWarnings("UnusedParameters")
     public String  _fastbootReboot(View view) {
 
         message = "Are you sure you want to reboot the device into" +
@@ -53,6 +56,7 @@ public class FoActivity extends ActionBarActivity {
         return rebootType;
     } //_fastbootReboot
 
+    @SuppressWarnings("UnusedParameters")
     public String _downloadReboot(View view) {
 
         message = "Are you sure you want to reboot the device into download mode?\n" +
