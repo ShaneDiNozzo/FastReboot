@@ -10,6 +10,7 @@ import java.io.IOException;
 public class FoActivity extends ActionBarActivity {
 
     static Process rebootRecovery, rebootNormal, rebootDownload, rebootFastboot;
+    static String message, title, rebootType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,99 +18,110 @@ public class FoActivity extends ActionBarActivity {
         setContentView(R.layout.activity_fo);
     } //onCreate
 
-    public void _normalReboot(View view) {
+    public String _normalReboot(View view) {
+
+        message = "Are you sure you want to reboot the device?\nAll unsaved data will be lost!";
+        title = "REBOOT";
+        rebootType = "normal";
+
+        _alertDialog(message, title);
+
+        return rebootType;
+    } //_normalReboot
+
+    public String _recoveryReboot(View view) {
+
+        message = "Are you sure you want to reboot the device into recovery mode?\n" +
+                "All unsaved data will be lost!";
+        title = "REBOOT INTO RECOVERY";
+        rebootType = "recovery";
+
+        _alertDialog(message, title);
+
+        return rebootType;
+    } //_recoveryReboot
+
+    public String  _fastbootReboot(View view) {
+
+        message = "Are you sure you want to reboot the device into" +
+                " bootloader (fastboot) mode?\nAll unsaved data will be lost!";
+        title = "REBOOT INTO BOOTLOADER";
+        rebootType = "fastboot";
+
+        _alertDialog(message, title);
+
+        return rebootType;
+    } //_fastbootReboot
+
+    public String _downloadReboot(View view) {
+
+        message = "Are you sure you want to reboot the device into download mode?\n" +
+                "All unsaved data will be lost!\n\n" +
+                "WARNING:\nThis function can be used only on Samsung phones!";
+        title = "REBOOT INTO DOWNLOAD";
+        rebootType = "download";
+
+        _alertDialog(message, title);
+
+        return rebootType;
+    } //_downloadReboot
+
+    public void _alertDialog(String message, String title) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to reboot the device?\n" +
-                "All unsaved data will be lost!");
-        builder.setTitle("REBOOT");
+        builder.setMessage(message);
+        builder.setTitle(title);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                _rebooter(rebootType);
+            } //onClick
+        }); //DialogInterface.OnClickListener
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-NOTHING-*-*-*-*-*-*-*-*-*-*-*-*-
+            } //onClick
+        }); //DialogInterface.OnClickListener
+        builder.create().show();
+    } //_alertDialog
+
+    public void _rebooter(String rebootType) {
+
+        switch (rebootType) {
+            case "normal":
                 try {
                     rebootNormal = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //
                 } //try
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-NOTHING-*-*-*-*-*-*-*-*-*-*-*-*-
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.create().show();
-    } //_normalReboot
 
-    public void _recoveryReboot(View view) {
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to reboot the device into recovery mode?\n" +
-                "All unsaved data will be lost!");
-        builder.setTitle("REBOOT INTO RECOVERY");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+                break;
+            case "recovery":
                 try {
-                    rebootRecovery = Runtime.getRuntime().exec(new String[] {
-                            "su", "-c", "reboot", "recovery"});
+                    rebootRecovery = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot",
+                            "recovery"});
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //
                 } //try
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-NOTHING-*-*-*-*-*-*-*-*-*-*-*-*-
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.create().show();
-    } //_recoveryReboot
 
-    public void _downloadReboot(View view) {
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to reboot the device into download mode?\n" +
-                "All unsaved data will be lost!\n\n" +
-                "WARNING:\nThis function can be used only on Samsung phones!");
-        builder.setTitle("REBOOT INTO DOWNLOAD");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+                break;
+            case "bootloader":
                 try {
-                    rebootDownload = Runtime.getRuntime().exec(new String[] {
-                            "su", "-c", "reboot", "download"});
+                    rebootFastboot = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot",
+                            "bootloader"});
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //
                 } //try
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-NOTHING-*-*-*-*-*-*-*-*-*-*-*-*-
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.create().show();
-    } //_downloadReboot
 
-    public void _fastbootReboot(View view) {
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to reboot the device into" +
-                " bootloader (fastboot) mode?\nAll unsaved data will be lost!");
-        builder.setTitle("REBOOT INTO BOOTLOADER");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+                break;
+            case "download":
                 try {
-                    rebootFastboot = Runtime.getRuntime().exec(new String[] {
-                            "su", "-c", "reboot", "bootloader"});
+                    rebootDownload = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot",
+                            "download"});
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //
                 } //try
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-NOTHING-*-*-*-*-*-*-*-*-*-*-*-*-
-            } //onClick
-        }); //DialogInterface.OnClickListener
-        builder.create().show();
-    } //_fastbootReboot
+
+                break;
+        } //switch rebootType
+    } //_rebooter
 } //FoActivity class
