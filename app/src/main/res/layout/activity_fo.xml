@@ -50,4 +50,15 @@
         android:text="@string/download_reboot"
         android:onClick="_downloadReboot" />
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/safe_reboot"
+        android:onClick="_safeReboot" />
+
 </LinearLayout>

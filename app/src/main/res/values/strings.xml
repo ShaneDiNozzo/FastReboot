@@ -6,4 +6,5 @@
     <string name="recovery_reboot">Reboot into Recovery</string>
     <string name="download_reboot">Reboot into Download</string>
     <string name="fastboot_reboot">Reboot into Bootloader</string>
+    <string name="safe_reboot">Reboot system in Safe mode</string>
 </resources>

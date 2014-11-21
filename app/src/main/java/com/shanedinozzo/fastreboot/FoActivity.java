@@ -9,7 +9,8 @@ import java.io.IOException;
 
 public class FoActivity extends ActionBarActivity {
 
-    static Process rebootRecovery, rebootNormal, rebootDownload, rebootFastboot;
+    static Process rebootRecovery, rebootNormal, rebootDownload, rebootFastboot, rebootSafe,
+            rebootHot;
     static String message, title, rebootType;
 
     @Override
@@ -127,6 +128,31 @@ public class FoActivity extends ActionBarActivity {
                 } //try
 
                 break;
+            case "safe":
+                try {
+                    rebootSafe = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
+                            "persist.sys.safemode", "1"});
+                    rebootHot = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
+                            "ctl.restart", "zygote"});
+                } catch (IOException e) {
+                    //
+                } //try
+
+                break;
         } //switch rebootType
     } //_rebooter
+
+    @SuppressWarnings("UnusedParameters")
+    public String _safeReboot(View view) {
+
+        title = "REBOOT IN SAFE MODE";
+        message = "Are you sure you want to reboot the system in safe mode?\n" +
+                "All unsaved data will be lost!\n\nWARNING:\n" +
+                "You can't use your installed apps in safe mode!";
+        rebootType = "safe";
+
+        _alertDialog(message, title);
+
+        return rebootType;
+    } //_safeReboot
 } //FoActivity class
