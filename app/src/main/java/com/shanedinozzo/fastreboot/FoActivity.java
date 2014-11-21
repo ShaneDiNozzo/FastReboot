@@ -68,7 +68,8 @@ public class FoActivity extends ActionBarActivity {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to reboot the device into download mode?\n" +
-                "All unsaved data will be lost!");
+                "All unsaved data will be lost!\n\n" +
+                "WARNING:\nThis function can be used only on Samsung phones!");
         builder.setTitle("REBOOT INTO DOWNLOAD");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
