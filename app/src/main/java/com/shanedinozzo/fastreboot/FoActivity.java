@@ -20,9 +20,9 @@ public class FoActivity extends ActionBarActivity {
     public void _normalReboot(View view) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(
-                "Are you sure you want to reboot the device?\nAll unsaved data will be lost!");
-        builder.setTitle("Reboot");
+        builder.setMessage("Are you sure you want to reboot the device?\n" +
+                "All unsaved data will be lost!");
+        builder.setTitle("REBOOT");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 try {
@@ -45,7 +45,7 @@ public class FoActivity extends ActionBarActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to reboot the device into recovery mode?\n" +
                 "All unsaved data will be lost!");
-        builder.setTitle("Reboot into recovery");
+        builder.setTitle("REBOOT INTO RECOVERY");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 try {
@@ -69,7 +69,7 @@ public class FoActivity extends ActionBarActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to reboot the device into download mode?\n" +
                 "All unsaved data will be lost!");
-        builder.setTitle("Reboot into download");
+        builder.setTitle("REBOOT INTO DOWNLOAD");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 try {
@@ -92,8 +92,8 @@ public class FoActivity extends ActionBarActivity {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to reboot the device into" +
-                "bootloader (fastboot) mode?\nAll unsaved data will be lost!");
-        builder.setTitle("Reboot into bootloaderd");
+                " bootloader (fastboot) mode?\nAll unsaved data will be lost!");
+        builder.setTitle("REBOOT INTO BOOTLOADER");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 try {
