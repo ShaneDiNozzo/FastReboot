@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fast Reboot</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="normal_reboot">Reboot</string>
+    <string name="recovery_reboot">Reboot into Recovery</string>
+    <string name="download_reboot">Reboot into Download</string>
+    <string name="fastboot_reboot">Reboot into Bootloader</string>
+</resources>
