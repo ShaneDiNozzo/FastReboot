@@ -6,7 +6,9 @@
       <w>fastboot</w>
       <w>intelli</w>
       <w>rebooter</w>
+      <w>safemode</w>
       <w>samsung</w>
+      <w>setprop</w>
     </words>
   </dictionary>
 </component>
