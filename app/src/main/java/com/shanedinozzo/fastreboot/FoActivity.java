@@ -47,7 +47,8 @@ public class FoActivity extends ActionBarActivity {
     public String  _fastbootReboot(View view) {
 
         message = "Are you sure you want to reboot the device into" +
-                " bootloader (fastboot) mode?\nAll unsaved data will be lost!";
+                " bootloader (fastboot) mode?\nAll unsaved data will be lost!\n\n" + "WARNING:\n" +
+                "This function will not work on Samsung devices!";
         title = "REBOOT INTO BOOTLOADER";
         rebootType = "fastboot";
 
